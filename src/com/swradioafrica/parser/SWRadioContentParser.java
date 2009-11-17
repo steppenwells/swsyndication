@@ -1,10 +1,13 @@
 package com.swradioafrica.parser;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
+
+import org.apache.commons.io.IOUtils;
 
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.Source;
@@ -19,7 +22,7 @@ public class SWRadioContentParser {
 		try {
 			item.setUrl(url.toString());
 			item.setPublishedDate(new Date());
-			populateContentItem(item, (String) url.getContent());
+			populateContentItem(item, IOUtils.toString((InputStream) url.getContent()));
 		} catch (IOException e) {
 			log.severe("Could not retrieve contents from url, returning empty ContentItem: " + url.toString());
 		}
