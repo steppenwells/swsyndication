@@ -12,6 +12,6 @@
   	<li><%= message %></li>
   <% } %>
   </ul>
-  <p><a href="/addurl.jsp">Add another article</a></p>
+  <p><a href="/admin/addurl.jsp">Add another article</a></p>
   </body>
 </html>

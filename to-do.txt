@@ -1,8 +1,11 @@
 todo:
 1)- user authentication
-DV 2)- logins in properties files 
+
 
 - better article body recognition
 - extract article date and contributor if possible
 - facebook integration
 - guice/maven/sienna
+
+
+DONE 2)- logins in properties files 

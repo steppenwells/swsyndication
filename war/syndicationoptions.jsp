@@ -7,7 +7,7 @@
   <head><title>Syndication Options</title></head>
   <body>
 
-<form action="/performsyndication" method="POST">
+<form action="/admin/performsyndication" method="POST">
 <p><h2>Title:</h2><br/>
 <input type="text" name="title" value="<%= content.getTitle() %>" size="100"/></p>
 

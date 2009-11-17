@@ -12,7 +12,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>syndicateUrl</servlet-name>
-		<url-pattern>/syndicateurl</url-pattern>
+		<url-pattern>/admin/syndicateurl</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -21,7 +21,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>performSyndication</servlet-name>
-		<url-pattern>/performsyndication</url-pattern>
+		<url-pattern>/admin/performsyndication</url-pattern>
 	</servlet-mapping>
 	
 	<!-- public urls -->
