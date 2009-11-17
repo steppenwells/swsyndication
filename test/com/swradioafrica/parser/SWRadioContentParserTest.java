@@ -1,5 +1,7 @@
 package com.swradioafrica.parser;
 
+import java.net.URL;
+
 import junit.framework.Assert;
 
 import org.junit.Test;
@@ -122,10 +124,12 @@ public class SWRadioContentParserTest {
 	@Test
 	public void shouldParseContentItemFromValidHtml() {
 		SWRadioContentParser parser = new SWRadioContentParser();
-		ContentItem item = parser.parseContent(SAMPLE_HTML);
+		ContentItem item = new ContentItem(); 
+		parser.populateContentItem(item, SAMPLE_HTML);
 		
 		Assert.assertEquals("Lawyers protest increasing state intimidation", item.getTitle());
 		Assert.assertEquals(BODY, item.getBody());
 	}
+
 	
 }
