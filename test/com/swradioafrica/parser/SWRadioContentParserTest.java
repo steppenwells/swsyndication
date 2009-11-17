@@ -1,11 +1,13 @@
 package com.swradioafrica.parser;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
 
+import com.google.appengine.repackaged.com.google.common.base.StringUtil;
 import com.swradioafrica.model.ContentItem;
 
 
@@ -131,5 +133,31 @@ public class SWRadioContentParserTest {
 		Assert.assertEquals(BODY, item.getBody());
 	}
 
-	
+	@Test
+	public void shouldParseValidUrl() throws Exception {
+		SWRadioContentParser parser = new SWRadioContentParser();
+		String url = "http://www.swradioafrica.com/news161109/mtmeets161109.htm";
+		ContentItem item = parser.parseContent(new URL(url));
+		
+		Assert.assertNotNull(item);
+		Assert.assertEquals(url, item.getUrl());
+		Assert.assertNotNull(item.getBody());
+		Assert.assertNotNull(item.getTitle());
+		
+	}
+
+	@Test
+	public void shouldHandleInvalidUrl() throws Exception {
+		SWRadioContentParser parser = new SWRadioContentParser();
+		String url = "http://www.somethingsomethingsomething.com/news161109/mtmeets161109.htm";
+		ContentItem item = parser.parseContent(new URL(url));
+		
+		Assert.assertNotNull(item);
+		Assert.assertEquals("", item.getBody());
+		Assert.assertEquals("", item.getTitle());
+		Assert.assertNotNull(item.getUrl());
+		Assert.assertNotNull(item.getPublishedDate());
+		
+	}
+
 }

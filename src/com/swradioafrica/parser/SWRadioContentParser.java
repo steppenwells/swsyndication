@@ -52,6 +52,10 @@ public class SWRadioContentParser {
 
 	private String extractTitle(Source source) {
 		List<Element> headings = source.getAllElements("h1");
-		return headings.get(0).getContent().getTextExtractor().toString();
+		if (headings != null && headings.size() > 0) {
+			return headings.get(0).getContent().getTextExtractor().toString();
+		} else {
+			return "";
+		}
 	}
 }
