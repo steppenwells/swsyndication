@@ -1,8 +1,11 @@
 package com.swradioafrica.servlets;
 
+import java.util.List;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,18 +33,32 @@ public class PerformSyndicationsServlet extends HttpServlet {
 		String[] syndications = req.getParameterValues("syndications");
 		
 		SyndicationFactory syndicationFactory = new SyndicationFactory();
+		List<String> syndicationMessages = new ArrayList<String>();
+		
 		for (String s: syndications) {
 			Syndication syndication = syndicationFactory.getSyndication(s);
 			if (syndication != null) {
 				syndication.syndicate(contentItem);
+				syndicationMessages.add("successfully sent to " + s);
 			} else {
 				log.severe("Invalid syndication type [" + s + "] attempted. Nothing done.");
+				syndicationMessages.add("failed to send to " + s);
 			}
 		}
 		
-		dao.save(contentItem);
+		try {
+			dao.save(contentItem);
+			syndicationMessages.add("successfully stored for rss");
+		} catch (Exception e) {
+			log.severe("Failed to persist.");
+			syndicationMessages.add("failed to store, please reload later");
+		}
 		
-		super.doPost(req, resp);
+		req.setAttribute("syndicationMessages", syndicationMessages);
+		
+		String destination = "/syndicationResults.jsp";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+        rd.forward(req, resp);
 	}
 
 
