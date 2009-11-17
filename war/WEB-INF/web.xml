@@ -15,7 +15,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/swradiosyndication</url-pattern>
 	</servlet-mapping>
 	
-	
+	<!-- admin urls -->
 	<servlet>
 		<servlet-name>syndicateUrl</servlet-name>
 		<servlet-class>com.swradioafrica.servlets.SyndicateUrlServlet</servlet-class>
@@ -34,6 +34,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/performsyndication</url-pattern>
 	</servlet-mapping>
 	
+	<!-- public urls -->
+	<servlet>
+		<servlet-name>serveRss</servlet-name>
+		<servlet-class>com.swradioafrica.servlets.ServeRssServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>serveRss</servlet-name>
+		<url-pattern>/rss</url-pattern>
+	</servlet-mapping>
 	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
