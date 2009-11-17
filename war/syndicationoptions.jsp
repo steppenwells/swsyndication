@@ -4,7 +4,7 @@
 <% ContentItem content = (ContentItem)request.getAttribute("contentItem"); %>
 
 <html>
-  <head><title>Syndiation Options</title></head>
+  <head><title>Syndication Options</title></head>
   <body>
 
 <form action="/performsyndication" method="POST">
