@@ -6,6 +6,7 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
 import com.swradioafrica.model.ContentItem;
+import com.swradioafrica.utils.UrlShortener;
 
 public class TwitterSyndication implements Syndication {
 	private static final Logger log = Logger.getLogger(TwitterSyndication.class.getName());
@@ -17,7 +18,14 @@ public class TwitterSyndication implements Syndication {
 	
 	public String syndicate(ContentItem item) {
 		try {
-			this.twitter.updateStatus(item.getTitle() + " " + item.getUrl());
+			String shortUrl;
+			try {
+				shortUrl = UrlShortener.shorten(item.getUrl());
+			} catch (Exception e) {
+				log.warning("Url shortening failed. Using full url. Error was: " + e.getStackTrace());
+				shortUrl = item.getUrl();
+			}
+			this.twitter.updateStatus(item.getTitle() + " " + shortUrl);
 			return null;
 		} catch (TwitterException e) {
 			// TODO Auto-generated catch block
