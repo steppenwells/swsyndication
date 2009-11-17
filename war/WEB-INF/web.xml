@@ -5,16 +5,6 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
-	<!-- GAE example -->
-	<servlet>
-		<servlet-name>Swradiosyndication</servlet-name>
-		<servlet-class>com.swradioafrica.SwradiosyndicationServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Swradiosyndication</servlet-name>
-		<url-pattern>/swradiosyndication</url-pattern>
-	</servlet-mapping>
-	
 	<!-- admin urls -->
 	<servlet>
 		<servlet-name>syndicateUrl</servlet-name>

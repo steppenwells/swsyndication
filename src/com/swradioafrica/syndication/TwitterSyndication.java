@@ -6,6 +6,7 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
 import com.swradioafrica.model.ContentItem;
+import com.swradioafrica.utils.PropertiesRepository;
 import com.swradioafrica.utils.UrlShortener;
 
 public class TwitterSyndication implements Syndication {
@@ -13,7 +14,9 @@ public class TwitterSyndication implements Syndication {
 	private Twitter twitter;
 	
 	public TwitterSyndication() {
-		this.setTwitter(new Twitter("SWRadioTest","xswzimx1x"));
+		String username = PropertiesRepository.getInstance().getTwitterUsername();
+		String password = PropertiesRepository.getInstance().getTwitterPassword();
+		this.setTwitter(new Twitter(username,password));
 	}
 	
 	public String syndicate(ContentItem item) {
