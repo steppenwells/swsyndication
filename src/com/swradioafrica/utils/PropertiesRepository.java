@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
@@ -12,10 +13,10 @@ public class PropertiesRepository {
 
 	//singleton pattern ruthlessly ripped off from here: http://en.wikipedia.org/wiki/Singleton_pattern#The_solution_of_Bill_Pugh
 	private PropertiesRepository() {
-		URL propertiesFileUrl = ClassLoader.getSystemResource("swradioafrica.properties");
+		InputStream propertiesStream = this.getClass().getClassLoader().getResourceAsStream("swradioafrica.properties");
 		this.properties = new Properties();
 		try {
-			this.properties.load(new FileInputStream(new File(propertiesFileUrl.getFile())));
+			this.properties.load(propertiesStream);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
