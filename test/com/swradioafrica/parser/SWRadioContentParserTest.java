@@ -1,13 +1,11 @@
 package com.swradioafrica.parser;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
 
-import com.google.appengine.repackaged.com.google.common.base.StringUtil;
 import com.swradioafrica.model.ContentItem;
 
 

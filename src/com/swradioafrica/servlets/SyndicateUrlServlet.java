@@ -2,7 +2,6 @@ package com.swradioafrica.servlets;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
