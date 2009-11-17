@@ -56,7 +56,7 @@ public class PerformSyndicationsServlet extends HttpServlet {
 		
 		req.setAttribute("syndicationMessages", syndicationMessages);
 		
-		String destination = "/syndicationResults.jsp";
+		String destination = "/admin/syndicationResults.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
         rd.forward(req, resp);
 	}
