@@ -42,7 +42,7 @@ public class SWRadioContentParser {
 		for (Element element : elements) {
 			String line = element.getContent().getTextExtractor().toString();
 			if (!"".equals(line.trim())) {
-				sb.append(line);
+				sb.append("<p>"+line+"</p>");
 				sb.append("\n");
 			}
 		}
