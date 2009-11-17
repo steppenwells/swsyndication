@@ -17,12 +17,21 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	
 	<servlet>
-		<servlet-name>synidateUrl</servlet-name>
+		<servlet-name>syndicateUrl</servlet-name>
 		<servlet-class>com.swradioafrica.servlets.SyndicateUrlServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>synidateUrl</servlet-name>
+		<servlet-name>syndicateUrl</servlet-name>
 		<url-pattern>/syndicateurl</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>performSyndication</servlet-name>
+		<servlet-class>com.swradioafrica.servlets.PerformSyndicationsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>performSyndication</servlet-name>
+		<url-pattern>/performsyndication</url-pattern>
 	</servlet-mapping>
 	
 	
