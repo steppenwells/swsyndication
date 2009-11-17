@@ -13,6 +13,7 @@ import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.Source;
 
 import com.swradioafrica.model.ContentItem;
+import com.swradioafrica.utils.StringCleaner;
 
 public class SWRadioContentParser {
 	private static final Logger log = Logger.getLogger(SWRadioContentParser.class.getName());
@@ -31,7 +32,6 @@ public class SWRadioContentParser {
 	
 	protected void populateContentItem(ContentItem item, String html) {
 		Source source = new Source(html);
-		
 		item.setTitle(extractTitle(source));
 		item.setBody(extractBody(source));
 	}
@@ -46,14 +46,14 @@ public class SWRadioContentParser {
 				sb.append("\n");
 			}
 		}
-		return sb.toString();
+		return StringCleaner.cleanAndHtmlEntityEncode(sb.toString());
 		
 	}
 
 	private String extractTitle(Source source) {
 		List<Element> headings = source.getAllElements("h1");
 		if (headings != null && headings.size() > 0) {
-			return headings.get(0).getContent().getTextExtractor().toString();
+			return StringCleaner.cleanAndHtmlEntityEncode(headings.get(0).getContent().getTextExtractor().toString());
 		} else {
 			return "";
 		}

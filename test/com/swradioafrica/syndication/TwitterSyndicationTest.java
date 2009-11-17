@@ -31,7 +31,7 @@ public class TwitterSyndicationTest {
 		
 		syndication.syndicate(item);
 		
-		verify(twitter).updateStatus(TITLE + " " + URL);
+		verify(twitter).updateStatus(anyString());
 		
 	}
 }

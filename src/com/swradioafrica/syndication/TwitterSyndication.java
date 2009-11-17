@@ -22,7 +22,7 @@ public class TwitterSyndication implements Syndication {
 			try {
 				shortUrl = UrlShortener.shorten(item.getUrl());
 			} catch (Exception e) {
-				log.warning("Url shortening failed. Using full url. Error was: " + e.getStackTrace());
+				log.warning("Url shortening failed. Using full url. Error was: " + e.getMessage());
 				shortUrl = item.getUrl();
 			}
 			this.twitter.updateStatus(item.getTitle() + " " + shortUrl);
