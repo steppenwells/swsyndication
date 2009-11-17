@@ -86,11 +86,11 @@ public class HTMLEncode
             "\\", "&#092;"
     };
 
-    private static Hashtable entityTableEncode = null;
+    private static Hashtable<String, String> entityTableEncode = null;
 
     protected static synchronized void buildEntityTables()
     {
-        entityTableEncode = new Hashtable(ENTITIES.length);
+        entityTableEncode = new Hashtable<String, String>(ENTITIES.length);
 
         for (int i = 0; i < ENTITIES.length; i += 2)
         {
@@ -171,7 +171,8 @@ public class HTMLEncode
         }
     }
 
-    protected static String encodeHREFParamJava13(String value)
+    @SuppressWarnings("deprecation")
+	protected static String encodeHREFParamJava13(String value)
     {
         return URLEncoder.encode(value);
     }

@@ -33,7 +33,7 @@ public class SyndicateUrlServlet extends HttpServlet {
 		request.setAttribute("url", url);
 		request.setAttribute("contentItem", contentItem);
 		
-		String destination = "/syndicationoptions.jsp";
+		String destination = "/admin/syndicationOptions.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
         rd.forward(request, response);
 	}

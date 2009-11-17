@@ -1,18 +1,11 @@
 package com.swradioafrica.model;
 
-import java.util.Date;
-
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
-import javax.jdo.PersistenceManagerFactory;
 
-import org.hamcrest.Matcher;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.google.appengine.api.datastore.Key;
 
 public class ContentItemDAOTest {
 

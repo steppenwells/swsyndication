@@ -15,8 +15,8 @@ import com.swradioafrica.model.ContentItem;
 import com.swradioafrica.model.ContentItemDAO;
 import com.swradioafrica.syndication.Syndication;
 import com.swradioafrica.syndication.SyndicationFactory;
-import com.swradioafrica.syndication.TwitterSyndication;
 
+@SuppressWarnings("serial")
 public class PerformSyndicationsServlet extends HttpServlet {
 	private static final Logger log = Logger.getLogger(PerformSyndicationsServlet.class.getName());
 	private ContentItemDAO dao;
@@ -56,7 +56,7 @@ public class PerformSyndicationsServlet extends HttpServlet {
 		
 		req.setAttribute("syndicationMessages", syndicationMessages);
 		
-		String destination = "/syndicationResults.jsp";
+		String destination = "/admin/syndicationResults.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
         rd.forward(req, resp);
 	}
