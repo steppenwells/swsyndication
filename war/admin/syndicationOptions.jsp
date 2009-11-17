@@ -22,10 +22,6 @@
 
 <h2>Send to:</h2><br/>
 Twitter: <input type="checkbox" name="syndications" value="twitter" checked="true" /><br/>
-Facebook: <input type="checkbox" name="syndications" value="facebook" checked="true" /><br/>
-Rss: <input type="checkbox" name="syndications" value="rss" checked="true" /><br/>
-sitemap: <input type="checkbox" name="syndications" value="sitemap" checked="true" /><br/>
-
 <input type="submit" value="syndicate" />
 </form>
 

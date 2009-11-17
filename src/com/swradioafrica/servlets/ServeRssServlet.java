@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.swradioafrica.model.ContentItem;
 import com.swradioafrica.model.ContentItemDAO;
 
+@SuppressWarnings("serial")
 public class ServeRssServlet extends HttpServlet {
 	
 	private ContentItemDAO contentItemDAO;

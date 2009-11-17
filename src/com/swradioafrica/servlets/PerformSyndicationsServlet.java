@@ -15,8 +15,8 @@ import com.swradioafrica.model.ContentItem;
 import com.swradioafrica.model.ContentItemDAO;
 import com.swradioafrica.syndication.Syndication;
 import com.swradioafrica.syndication.SyndicationFactory;
-import com.swradioafrica.syndication.TwitterSyndication;
 
+@SuppressWarnings("serial")
 public class PerformSyndicationsServlet extends HttpServlet {
 	private static final Logger log = Logger.getLogger(PerformSyndicationsServlet.class.getName());
 	private ContentItemDAO dao;

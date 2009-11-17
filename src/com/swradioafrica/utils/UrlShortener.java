@@ -1,11 +1,5 @@
 package com.swradioafrica.utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.net.URL;
-import java.util.Properties;
-
-import twitter4j.TwitterException;
 import twitter4j.http.HttpClient;
 import twitter4j.http.Response;
 import twitter4j.org.json.JSONObject;
