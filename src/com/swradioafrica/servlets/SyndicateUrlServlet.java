@@ -13,7 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.swradioafrica.model.ContentItem;
 import com.swradioafrica.parser.SWRadioContentParser;
 
+@SuppressWarnings("serial")
 public class SyndicateUrlServlet extends HttpServlet {
+	
+	private SWRadioContentParser parser;
+	
+	public SyndicateUrlServlet() {
+		
+		this.parser = new SWRadioContentParser();
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -21,12 +29,7 @@ public class SyndicateUrlServlet extends HttpServlet {
 		
 		String url = request.getParameter("url");
 		
-		SWRadioContentParser parser = new SWRadioContentParser();
 		ContentItem contentItem = parser.parseContent(new URL(url));
-	
-//		response.setContentType("text/plain");
-//		response.getWriter().println("syndicating " + url);
-		
 		
 		request.setAttribute("url", url);
 		request.setAttribute("contentItem", contentItem);

@@ -1,5 +1,7 @@
 package com.swradioafrica.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -70,6 +72,21 @@ public class ContentItem {
 	
 	public void setPublishedDate(Date publishedDate) {
 		this.publishedDate = publishedDate;
+	}
+	
+	public String getPublishedDateAsString() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		return dateFormat.format(publishedDate);
+	}
+	
+	public void setPublishedDateFromString(String dateString) {
+		try {			
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			setPublishedDate(dateFormat.parse(dateString));
+			
+		} catch(ParseException pe) {
+			setPublishedDate(new Date());
+		}
 	}
 	
 }
