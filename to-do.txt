@@ -1,8 +1,8 @@
 todo:
-- better article body recognition
-- extract article date and contributor if possible
 - facebook integration
 - guice/maven/sienna
+- extract article date and contributor if possible
 
 DONE 1)- user authentication
 DONE 2)- logins in properties files 
+DONE - better article body recognition
