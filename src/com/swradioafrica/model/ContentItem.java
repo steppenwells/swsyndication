@@ -51,7 +51,11 @@ public class ContentItem {
 	}
 	
 	public String getTitle() {
-		return title;
+		if (title != null) {
+			return title; 
+		} else {
+			return "";
+		}
 	}
 	
 	public void setTitle(String title) {
@@ -59,7 +63,11 @@ public class ContentItem {
 	}
 	
 	public String getBody() {
-		return body.getValue();
+		if (body != null) {
+			return body.getValue(); 
+		} else {
+			return "";
+		}
 	}
 	
 	public void setBody(String body) {

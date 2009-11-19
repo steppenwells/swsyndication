@@ -3,14 +3,18 @@ package com.swradioafrica.parser;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
-
-import org.apache.commons.io.IOUtils;
 
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.Source;
+
+import org.apache.commons.io.IOUtils;
 
 import com.swradioafrica.model.ContentItem;
 import com.swradioafrica.utils.StringCleaner;
@@ -32,12 +36,17 @@ public class SWRadioContentParser {
 	
 	protected void populateContentItem(ContentItem item, String html) {
 		Source source = new Source(html);
+		source.fullSequentialParse();
+		
 		item.setTitle(extractTitle(source));
-		item.setBody(extractBody(source));
+		
+		Element body = extractElementContainingBody(source);
+		item.setBody(extractBodyText(body));
 	}
 		
-	private String extractBody(Source source) {
-		List<Element> elements = source.getAllElements("p");
+	
+	private String extractBodyText(Element body) {
+		List<Element> elements = body.getAllElements("p");
 		StringBuilder sb = new StringBuilder();
 		for (Element element : elements) {
 			String line = element.getContent().getTextExtractor().toString();
@@ -57,5 +66,29 @@ public class SWRadioContentParser {
 		} else {
 			return "";
 		}
+	}
+
+	protected Element extractElementContainingBody(Source source) {
+		List<Element> elements = source.getAllElements("p");
+		Map<Integer,Element> map = new HashMap<Integer,Element>();
+		
+		for (Element element : elements) {
+			String line = element.getContent().getTextExtractor().toString();
+			map.put(line.length(), element);
+		}
+
+		List<Integer> keyValues = new ArrayList<Integer>(map.keySet());
+		Collections.sort(keyValues);
+		Collections.reverse(keyValues);
+
+		Element parentElement = map.get(keyValues.get(0)).getParentElement();
+		String parentElementName = parentElement.getStartTag().getName();
+		
+		if (parentElementName.equals("td") || parentElementName.equals("div")) {
+			return parentElement;
+		} else {
+			return parentElement.getParentElement();
+		}
+		
 	}
 }
