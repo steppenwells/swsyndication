@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.swradioafrica.model.ContentItem;
 import com.swradioafrica.model.ContentItemDAO;
@@ -21,10 +22,10 @@ import com.swradioafrica.syndication.SyndicationFactory;
 @Singleton
 public class PerformSyndicationsServlet extends HttpServlet {
 	private static final Logger log = Logger.getLogger(PerformSyndicationsServlet.class.getName());
-	private ContentItemDAO dao;
+	@Inject private ContentItemDAO dao;
+	@Inject private SyndicationFactory syndicationFactory;
 	
 	public PerformSyndicationsServlet() {
-		this.dao = new ContentItemDAO();
 	}
 	
 	
@@ -34,7 +35,6 @@ public class PerformSyndicationsServlet extends HttpServlet {
 		ContentItem contentItem = bindContentItem(req);
 		String[] syndications = req.getParameterValues("syndications");
 		
-		SyndicationFactory syndicationFactory = new SyndicationFactory();
 		List<String> syndicationMessages = new ArrayList<String>();
 		
 		for (String s: syndications) {

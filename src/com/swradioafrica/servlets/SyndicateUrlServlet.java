@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.swradioafrica.model.ContentItem;
 import com.swradioafrica.parser.SWRadioContentParser;
@@ -16,13 +17,9 @@ import com.swradioafrica.parser.SWRadioContentParser;
 @SuppressWarnings("serial")
 @Singleton
 public class SyndicateUrlServlet extends HttpServlet {
-	
+	@Inject
 	private SWRadioContentParser parser;
-	
-	public SyndicateUrlServlet() {
-		
-		this.parser = new SWRadioContentParser();
-	}
+
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

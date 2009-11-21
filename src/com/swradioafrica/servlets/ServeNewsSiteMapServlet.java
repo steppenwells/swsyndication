@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.swradioafrica.model.ContentItem;
 import com.swradioafrica.model.ContentItemDAO;
@@ -17,11 +18,7 @@ import com.swradioafrica.model.ContentItemDAO;
 @Singleton
 public class ServeNewsSiteMapServlet extends HttpServlet {
 	
-	private ContentItemDAO contentItemDAO;
-	
-	public ServeNewsSiteMapServlet() {
-		this.contentItemDAO = new ContentItemDAO();
-	}
+	@Inject private ContentItemDAO contentItemDAO;
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
