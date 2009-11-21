@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.inject.Singleton;
 import com.swradioafrica.model.ContentItem;
 import com.swradioafrica.model.ContentItemDAO;
 
 @SuppressWarnings("serial")
+@Singleton
 public class ServeRssServlet extends HttpServlet {
 	
 	private ContentItemDAO contentItemDAO;
