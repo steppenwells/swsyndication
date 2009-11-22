@@ -11,7 +11,7 @@ public class SyndicationServletModule extends ServletModule {
 
 	@Override protected void configureServlets() {
 		serve("/rss").with(ServeRssServlet.class);
-		serve("/newsSiteMap").with(ServeNewsSiteMapServlet.class);
+		serve("/newssitemap.xml").with(ServeNewsSiteMapServlet.class);
 		serve("/admin/performsyndication").with(PerformSyndicationsServlet.class);
 		serve("/admin/syndicateurl").with(SyndicateUrlServlet.class);
 		serve("/admin/list").with(ListContentServlet.class);
