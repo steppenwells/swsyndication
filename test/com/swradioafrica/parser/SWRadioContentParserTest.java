@@ -7,6 +7,7 @@ import junit.framework.Assert;
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.Source;
 
+import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
 import com.swradioafrica.model.ContentItem;
@@ -34,8 +35,8 @@ public class SWRadioContentParserTest {
 		ContentItem item = parser.parseContent(new URL(url));
 		
 		Assert.assertNotNull(item);
-		Assert.assertEquals(null, item.body);
-		Assert.assertEquals(null, item.title);
+		Assert.assertEquals(StringUtils.EMPTY, item.body);
+		Assert.assertEquals(StringUtils.EMPTY, item.title);
 		Assert.assertNotNull(item.url);
 		Assert.assertNotNull(item.publishedDate);
 		
@@ -64,7 +65,7 @@ public class SWRadioContentParserTest {
 		Source source = new Source(HTML);
 		source.fullSequentialParse();
 		SWRadioContentParser parser = new SWRadioContentParser();
-		String author = parser.extractAuthor(source);
+		String author = parser.extractAuthor(source, "b", "strong");
 		Assert.assertEquals("match", "Daniel O'Vydra", author);
 	}	
 

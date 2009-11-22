@@ -12,6 +12,8 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang.StringUtils;
+
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.Source;
 
@@ -41,16 +43,25 @@ public class SWRadioContentParser {
 
 		item.body = extractBodyText(extractElementContainingBody(source));
 		item.title = extractTitle(source);
-		item.author = extractAuthor(source);
+		item.author = extractAuthor(source, "b", "strong");
 	}
 		
+	protected String extractAuthor(Source source, String... tags) {
+		String author = StringUtils.EMPTY;
+		for (String tag : tags) {
+			if (author.equals(StringUtils.EMPTY)) {
+				author = extractAuthor(source, tag);
+			}
+		}
+		return author;
+	}
 	
-	protected String extractAuthor(Source source) {
+	private String extractAuthor(Source source, String tag) {
 		//TODO: support B as well as strong
-		Pattern authorPattern = Pattern.compile("<strong>.*By ([\\w\\s']+)\\<br\\>\\s+(\\d.*)</strong>");
+		Pattern authorPattern = Pattern.compile(String.format("<%s>.*By ([\\w\\s']+)\\<br\\>\\s+(\\d.*)</%s>",tag, tag));
 		
-		List<Element> strongs = source.getAllElements("strong");
-		for (Element element : strongs) {
+		List<Element> tags = source.getAllElements(tag);
+		for (Element element : tags) {
 			String potentialAuthor = element.toString();
 			Matcher authorMatcher = authorPattern.matcher(potentialAuthor);
 			
@@ -58,7 +69,7 @@ public class SWRadioContentParser {
 				return authorMatcher.group(1);
 			}
 		}
-		return null;
+		return StringUtils.EMPTY;
 	}
 
 	private String extractBodyText(Element body) {
@@ -81,7 +92,7 @@ public class SWRadioContentParser {
 		if (headings != null && headings.size() > 0) {
 			return StringCleaner.cleanAndHtmlEntityEncode(headings.get(0).getContent().getTextExtractor().toString());
 		} else {
-			return "";
+			return StringUtils.EMPTY;
 		}
 	}
 
