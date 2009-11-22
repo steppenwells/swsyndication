@@ -15,9 +15,9 @@
 		<% for(ContentItem item : contentItems) { %>
 		<item>
 			<title><%= item.getTitle() %></title>
-			<link><%= item.getUrl() %></link>
-			<description><%= item.getBody() %></description>
-			<pubDate><%= item.getPublishedDate() %></pubDate>
+			<link><%= item.url %></link>
+			<description><%= item.body %></description>
+			<pubDate><%= item.publishedDate %></pubDate>
 		</item>
 		<% } %>
 	</channel>

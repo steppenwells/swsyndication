@@ -1,7 +1,6 @@
 package com.swradioafrica.parser;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,8 +13,6 @@ import java.util.logging.Logger;
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.Source;
 
-import org.apache.commons.io.IOUtils;
-
 import com.swradioafrica.model.ContentItem;
 import com.swradioafrica.utils.StringCleaner;
 
@@ -24,8 +21,8 @@ public class SWRadioContentParser {
 	
 	public ContentItem parseContent(URL url) {
 		ContentItem item = new ContentItem();
-		item.setUrl(url.toString());
-		item.setPublishedDate(new Date());
+		item.url = url.toString();
+		item.publishedDate = new Date();
 		populateContentItem(item, url);
 		return item;
 	}
@@ -43,7 +40,7 @@ public class SWRadioContentParser {
 		item.setTitle(extractTitle(source));
 		
 		Element body = extractElementContainingBody(source);
-		item.setBody(extractBodyText(body));
+		item.body = extractBodyText(body);
 	}
 		
 	

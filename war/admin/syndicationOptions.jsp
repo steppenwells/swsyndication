@@ -18,7 +18,7 @@
 <textarea name="body" rows="30" cols="80"><%= content.getBody() %></textarea></p>
 
 <p><h2>Url:</h2><br/>
-<input type="text" name="url" value="<%= content.getUrl() %>" size="100"/></p>
+<input type="text" name="url" value="<%= content.url %>" size="100"/></p>
 
 <h2>Send to:</h2><br/>
 Twitter: <input type="checkbox" name="syndications" value="twitter" checked="true" /><br/>

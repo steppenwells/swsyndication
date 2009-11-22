@@ -1,6 +1,7 @@
 package com.swradioafrica.guice;
 
 import com.google.inject.servlet.ServletModule;
+import com.swradioafrica.servlets.ListContentServlet;
 import com.swradioafrica.servlets.PerformSyndicationsServlet;
 import com.swradioafrica.servlets.ServeNewsSiteMapServlet;
 import com.swradioafrica.servlets.ServeRssServlet;
@@ -13,5 +14,6 @@ public class SyndicationServletModule extends ServletModule {
 		serve("/newsSiteMap").with(ServeNewsSiteMapServlet.class);
 		serve("/admin/performsyndication").with(PerformSyndicationsServlet.class);
 		serve("/admin/syndicateurl").with(SyndicateUrlServlet.class);
+		serve("/admin/list").with(ListContentServlet.class);
 	}
 }

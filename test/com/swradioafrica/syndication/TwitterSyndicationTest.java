@@ -24,10 +24,10 @@ public class TwitterSyndicationTest {
 		Date DATE = new Date();
 		String URL = "http://www.funkydomain.com";
 		ContentItem item = new ContentItem();
-		item.setBody(BODY);
+		item.body = BODY;
 		item.setTitle(TITLE);
-		item.setPublishedDate(DATE);
-		item.setUrl(URL);
+		item.publishedDate = DATE;
+		item.url = URL;
 		
 		syndication.syndicate(item);
 		

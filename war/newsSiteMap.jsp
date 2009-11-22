@@ -8,13 +8,13 @@
         
 	<% for(ContentItem item : contentItems) { %>
 	  <url>
-	    <loc><%= item.getUrl() %></loc>
+	    <loc><%= item.url %></loc>
 	    <n:news>
 	      <n:publication>
 	        <n:name>SW Radio Africa</n:name>
 	        <n:language>en</n:language>
 	      </n:publication>
-	      <n:publication_date><%= item.getPublishedDate() %></n:publication_date>
+	      <n:publication_date><%= item.publishedDate %></n:publication_date>
 	      <n:title><%= item.getTitle() %></n:title>
 	      <n:keywords>zimbabwe</n:keywords>
 	    </n:news>

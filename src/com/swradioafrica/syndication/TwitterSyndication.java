@@ -23,10 +23,10 @@ public class TwitterSyndication implements Syndication {
 		try {
 			String shortUrl;
 			try {
-				shortUrl = UrlShortener.shorten(item.getUrl());
+				shortUrl = UrlShortener.shorten(item.url);
 			} catch (Exception e) {
 				log.warning("Url shortening failed. Using full url. Error was: " + e.getMessage());
-				shortUrl = item.getUrl();
+				shortUrl = item.url;
 			}
 			this.twitter.updateStatus(item.getTitle() + " " + shortUrl);
 			return null;

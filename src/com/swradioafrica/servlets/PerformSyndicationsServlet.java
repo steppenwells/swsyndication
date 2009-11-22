@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.swradioafrica.model.ContentItem;
-import com.swradioafrica.model.ContentItemDAO;
 import com.swradioafrica.syndication.Syndication;
 import com.swradioafrica.syndication.SyndicationFactory;
 
@@ -22,7 +21,6 @@ import com.swradioafrica.syndication.SyndicationFactory;
 @Singleton
 public class PerformSyndicationsServlet extends HttpServlet {
 	private static final Logger log = Logger.getLogger(PerformSyndicationsServlet.class.getName());
-	@Inject private ContentItemDAO dao;
 	@Inject private SyndicationFactory syndicationFactory;
 	
 	public PerformSyndicationsServlet() {
@@ -49,7 +47,7 @@ public class PerformSyndicationsServlet extends HttpServlet {
 		}
 		
 		try {
-			dao.save(contentItem);
+			contentItem.insert();
 			syndicationMessages.add("successfully stored for rss");
 		} catch (Exception e) {
 			log.severe("Failed to persist.");
@@ -67,9 +65,9 @@ public class PerformSyndicationsServlet extends HttpServlet {
 	private ContentItem bindContentItem(HttpServletRequest req) {
 		ContentItem contentItem = new ContentItem();
 		
-		contentItem.setBody(req.getParameter("body"));
+		contentItem.body = req.getParameter("body");
 		contentItem.setTitle(req.getParameter("title"));
-		contentItem.setUrl(req.getParameter("url"));
+		contentItem.url = req.getParameter("url");
 		contentItem.setPublishedDateFromString(req.getParameter("pubdate"));
 		
 		return contentItem;

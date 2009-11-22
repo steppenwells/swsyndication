@@ -4,51 +4,36 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.IdentityType;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
+import siena.Column;
+import siena.Id;
+import siena.Model;
+import siena.Query;
+import siena.Table;
+import siena.Text;
 
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.Text;
 
-@PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class ContentItem {
+@Table("content_item")
+public class ContentItem extends Model {
 
-	@PrimaryKey
-	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private Key key;
+	@Id
+	public Long id;
 	
-	@Persistent
-	private String url;
+	@Column("url")
+	public String url;
 	
-	@Persistent
-	private String title;
+	@Column("title")
+	public String title;
 	
-	@Persistent
-	private Text body;
+	@Column("body")
+	@Text
+	public String body;
 	
-	@Persistent
-	private Date publishedDate;
+	@Column("published_date")
+	public Date publishedDate;
 	
-	
-	
-	public Key getKey() {
-		return key;
-	}
-
-	public void setKey(Key key) {
-		this.key = key;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-	
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public static Query<ContentItem> all() {
+        return Model.all(ContentItem.class);
+    }
 	
 	public String getTitle() {
 		if (title != null) {
@@ -62,25 +47,18 @@ public class ContentItem {
 		this.title = title;
 	}
 	
-	public String getBody() {
-		if (body != null) {
-			return body.getValue(); 
-		} else {
-			return "";
-		}
-	}
+//	public String getBody() {
+//		if (body != null) {
+//			return body.getValue(); 
+//		} else {
+//			return "";
+//		}
+//	}
 	
-	public void setBody(String body) {
-		this.body = new Text(body);
-	}
-	
-	public Date getPublishedDate() {
-		return publishedDate;
-	}
-	
-	public void setPublishedDate(Date publishedDate) {
-		this.publishedDate = publishedDate;
-	}
+//	public void setBody(String body) {
+//		this.body = new Text(body);
+//	}
+
 	
 	public String getPublishedDateAsString() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -90,10 +68,10 @@ public class ContentItem {
 	public void setPublishedDateFromString(String dateString) {
 		try {			
 			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-			setPublishedDate(dateFormat.parse(dateString));
+			publishedDate = dateFormat.parse(dateString);
 			
 		} catch(ParseException pe) {
-			setPublishedDate(new Date());
+			publishedDate =new Date();
 		}
 	}
 	
