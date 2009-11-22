@@ -46,6 +46,7 @@ public class SWRadioContentParser {
 		
 	
 	protected String extractAuthor(Source source) {
+		//TODO: support B as well as strong
 		Pattern authorPattern = Pattern.compile("<strong>.*By ([\\w\\s']+)\\<br\\>\\s+(\\d.*)</strong>");
 		
 		List<Element> strongs = source.getAllElements("strong");
@@ -75,6 +76,7 @@ public class SWRadioContentParser {
 	}
 
 	private String extractTitle(Source source) {
+		//TODO: support span with class = title1
 		List<Element> headings = source.getAllElements("h1");
 		if (headings != null && headings.size() > 0) {
 			return StringCleaner.cleanAndHtmlEntityEncode(headings.get(0).getContent().getTextExtractor().toString());
