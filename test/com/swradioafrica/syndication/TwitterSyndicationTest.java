@@ -25,7 +25,7 @@ public class TwitterSyndicationTest {
 		String URL = "http://www.funkydomain.com";
 		ContentItem item = new ContentItem();
 		item.body = BODY;
-		item.setTitle(TITLE);
+		item.title = TITLE;
 		item.publishedDate = DATE;
 		item.url = URL;
 		

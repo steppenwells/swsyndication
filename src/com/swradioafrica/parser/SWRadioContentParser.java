@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.Source;
@@ -36,14 +38,28 @@ public class SWRadioContentParser {
 			return;
 		}
 		source.fullSequentialParse();
-		
-		item.setTitle(extractTitle(source));
-		
-		Element body = extractElementContainingBody(source);
-		item.body = extractBodyText(body);
+
+		item.body = extractBodyText(extractElementContainingBody(source));
+		item.title = extractTitle(source);
+		item.author = extractAuthor(source);
 	}
 		
 	
+	protected String extractAuthor(Source source) {
+		Pattern authorPattern = Pattern.compile("<strong>.*By ([\\w\\s']+)\\<br\\>\\s+(\\d.*)</strong>");
+		
+		List<Element> strongs = source.getAllElements("strong");
+		for (Element element : strongs) {
+			String potentialAuthor = element.toString();
+			Matcher authorMatcher = authorPattern.matcher(potentialAuthor);
+			
+			if (authorMatcher.find()) {
+				return authorMatcher.group(1);
+			}
+		}
+		return null;
+	}
+
 	private String extractBodyText(Element body) {
 		List<Element> elements = body.getAllElements("p");
 		StringBuilder sb = new StringBuilder();

@@ -15,7 +15,7 @@
 	        <n:language>en</n:language>
 	      </n:publication>
 	      <n:publication_date><%= item.publishedDate %></n:publication_date>
-	      <n:title><%= item.getTitle() %></n:title>
+	      <n:title><%= item.title %></n:title>
 	      <n:keywords>zimbabwe</n:keywords>
 	    </n:news>
 	  </url>

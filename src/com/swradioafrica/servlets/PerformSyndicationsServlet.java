@@ -66,7 +66,7 @@ public class PerformSyndicationsServlet extends HttpServlet {
 		ContentItem contentItem = new ContentItem();
 		
 		contentItem.body = req.getParameter("body");
-		contentItem.setTitle(req.getParameter("title"));
+		contentItem.title = req.getParameter("title");
 		contentItem.url = req.getParameter("url");
 		contentItem.setPublishedDateFromString(req.getParameter("pubdate"));
 		

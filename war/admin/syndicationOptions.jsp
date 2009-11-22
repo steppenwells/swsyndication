@@ -9,13 +9,16 @@
 
 <form action="/admin/performsyndication" method="POST">
 <p><h2>Title:</h2><br/>
-<input type="text" name="title" value="<%= content.getTitle() %>" size="100"/></p>
+<input type="text" name="title" value="<%= content.title %>" size="100"/></p>
+
+<p><h2>Author:</h2><br/>
+<input type="text" name="author" value="<%= content.author %>" size="100"/></p>
 
 <p><h2>Published on:</h2><br/>
 <input type="text" name="pubdate" value="<%= content.getPublishedDateAsString() %>" size="100"/></p>
 
 <p><h2>Article body:</h2><br/>
-<textarea name="body" rows="30" cols="80"><%= content.getBody() %></textarea></p>
+<textarea name="body" rows="30" cols="80"><%= content.body %></textarea></p>
 
 <p><h2>Url:</h2><br/>
 <input type="text" name="url" value="<%= content.url %>" size="100"/></p>

@@ -10,7 +10,7 @@
 <h1>List of all syndicated content</h1>
 <ul>
 <% for(ContentItem item : contentItems) { %>
-    <li><%= item.getTitle() %> - <a href="<%= item.url %>"><%= item.url %></a> - <%= item.getPublishedDateAsString() %></li>
+    <li><%= item.title %> - <a href="<%= item.url %>"><%= item.url %></a> - <%= item.getPublishedDateAsString() %></li>
     <div><%= item.body %></div>
     <hr />
 <% } %>

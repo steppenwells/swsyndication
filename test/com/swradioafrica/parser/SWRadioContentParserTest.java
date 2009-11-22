@@ -22,8 +22,8 @@ public class SWRadioContentParserTest {
 		Assert.assertNotNull(item);
 		Assert.assertEquals(url, item.url);
 		Assert.assertNotNull(item.body);
-		Assert.assertNotNull(item.getTitle());
-		Assert.assertEquals("Students arrested over ‘gun’ found in hostel", item.getTitle());
+		Assert.assertNotNull(item.title);
+		Assert.assertEquals("Students arrested over ‘gun’ found in hostel", item.title);
 		
 	}
 
@@ -34,8 +34,8 @@ public class SWRadioContentParserTest {
 		ContentItem item = parser.parseContent(new URL(url));
 		
 		Assert.assertNotNull(item);
-		Assert.assertEquals("", item.body);
-		Assert.assertEquals("", item.getTitle());
+		Assert.assertEquals(null, item.body);
+		Assert.assertEquals(null, item.title);
 		Assert.assertNotNull(item.url);
 		Assert.assertNotNull(item.publishedDate);
 		
@@ -54,6 +54,19 @@ public class SWRadioContentParserTest {
 		Element bodyElement = parser.extractElementContainingBody(source);
 		Assert.assertEquals("longest", bodyElement.getAttributeValue("id"));
 	}
+	
+	@Test 
+	public void shouldExtractAuthor() throws Exception {
+		String HTML = 	"<html><body>" +
+						"<strong>By Daniel O'Vydra<br> 16 October 2009</strong>" +
+						"</body></html>";
+			
+		Source source = new Source(HTML);
+		source.fullSequentialParse();
+		SWRadioContentParser parser = new SWRadioContentParser();
+		String author = parser.extractAuthor(source);
+		Assert.assertEquals("match", "Daniel O'Vydra", author);
+	}	
 
 
 }

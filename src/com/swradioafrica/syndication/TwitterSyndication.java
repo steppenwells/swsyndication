@@ -28,7 +28,7 @@ public class TwitterSyndication implements Syndication {
 				log.warning("Url shortening failed. Using full url. Error was: " + e.getMessage());
 				shortUrl = item.url;
 			}
-			this.twitter.updateStatus(item.getTitle() + " " + shortUrl);
+			this.twitter.updateStatus(item.title + " " + shortUrl);
 			return null;
 		} catch (TwitterException e) {
 			// TODO Auto-generated catch block
