@@ -24,18 +24,20 @@ public class SWRadioContentParser {
 	
 	public ContentItem parseContent(URL url) {
 		ContentItem item = new ContentItem();
-		try {
-			item.setUrl(url.toString());
-			item.setPublishedDate(new Date());
-			populateContentItem(item, IOUtils.toString((InputStream) url.getContent()));
-		} catch (IOException e) {
-			log.severe("Could not retrieve contents from url, returning empty ContentItem: " + url.toString());
-		}
+		item.setUrl(url.toString());
+		item.setPublishedDate(new Date());
+		populateContentItem(item, url);
 		return item;
 	}
 	
-	protected void populateContentItem(ContentItem item, String html) {
-		Source source = new Source(html);
+	protected void populateContentItem(ContentItem item, URL url) {
+		Source source; 
+		try {
+			source = new Source(url.openStream());
+		} catch (IOException e) {
+			log.severe("Could not retrieve contents from url, returning empty ContentItem: " + url.toString());
+			return;
+		}
 		source.fullSequentialParse();
 		
 		item.setTitle(extractTitle(source));
