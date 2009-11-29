@@ -5,31 +5,30 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Hello App Engine</title>
+    <title>SW Radio Africa</title>
   </head>
 
   <body>
-    <h1>SW Radio Africa syndication service</h1>
+    <h1>SW Radio Africa</h1>
     <ul>
-        <li><a href="/admin/addurl.jsp">Send URL</a></li>
-
-        <%
-            UserService userService = UserServiceFactory.getUserService();
-            User user = userService.getCurrentUser();
-            if (user != null) {
-        %>
-        <p>Logged in as: <%= user.getEmail() %>! (You can
-        <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
-        <%
-            } else {
-        %>
-        <p>Hello!
-        <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
-        to continue.</p>
-        <%
-            }
-        %>
-
+        <li><a href="/rss">View RSS feed</a></li>
     </ul>
+    <%
+        UserService userService = UserServiceFactory.getUserService();
+        User user = userService.getCurrentUser();
+        if (user != null) {
+    %>
+    <p>Logged in as: <%= user.getEmail() %>! (You can
+    <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
+    <%
+        } else {
+    %>
+    <p>Please 
+    <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
+    to continue.</p>
+    <%
+        }
+    %>
+    
   </body>
 </html>

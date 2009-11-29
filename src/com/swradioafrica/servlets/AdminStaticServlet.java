@@ -16,24 +16,16 @@ import com.swradioafrica.model.ContentItemDAO;
 
 @SuppressWarnings("serial")
 @Singleton
-public class ServeNewsSiteMapServlet extends HttpServlet {
-	
-	@Inject private ContentItemDAO contentItemDAO;
-	
+public class AdminStaticServlet extends HttpServlet {
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		response.setContentType("text/xml; charset=UTF8");
+		response.setContentType("text/html; charset=UTF8");
 		response.setCharacterEncoding("UTF-8");
-		response.setHeader("Content-Disposition", "attachment;filename=\"newssitemap.xml\"");
-		
-		
-		List<ContentItem> itemsByDate = contentItemDAO.getAllArticlesFromTheLast2Days();
-		
-		request.setAttribute("contentItems", itemsByDate);
-		
-		String destination = "/newsSiteMap.jsp";
+
+		String destination = "/admin/index.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
         rd.forward(request, response);
 	}
