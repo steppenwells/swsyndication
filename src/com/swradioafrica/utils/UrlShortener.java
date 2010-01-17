@@ -1,15 +1,21 @@
 package com.swradioafrica.utils;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 import twitter4j.http.HttpClient;
 import twitter4j.http.Response;
 import twitter4j.org.json.JSONObject;
 
+@Singleton
 public class UrlShortener {
 
-	public static String shorten(String url) throws Exception {
+	@Inject private PropertiesRepository propertiesRepository;
+	
+	public String shorten(String url) throws Exception {
 		String API_STRING = "http://api.j.mp/shorten?version=2.0.1&longUrl=%s&login=%s&apiKey=%s";
-		String USERNAME = PropertiesRepository.getInstance().getJdotMPUsername();
-		String API_KEY = PropertiesRepository.getInstance().getJdotMPKey();
+		String USERNAME = propertiesRepository.loadProperties().JMPUsername;
+		String API_KEY = propertiesRepository.loadProperties().JMPKey;
 			
 		String api_url = String.format(API_STRING, url, USERNAME, API_KEY);
 		HttpClient httpClient = new HttpClient();

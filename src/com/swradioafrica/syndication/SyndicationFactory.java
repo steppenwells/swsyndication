@@ -3,17 +3,20 @@ package com.swradioafrica.syndication;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SyndicationFactory {
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
-	private Map<String, Syndication> syndications;
-	public SyndicationFactory() {
+@Singleton
+public class SyndicationFactory {
+	
+	private final Map<String, Syndication> syndications;
+	
+	@Inject
+	public SyndicationFactory(TwitterSyndication twitterSyndication) {
 		this.syndications = new HashMap<String, Syndication>();
-		this.syndications.put("twitter", new TwitterSyndication());
-		//this.syndications.put("facebook", FacebookSyndication.class);
-		//this.syndications.put("rss", RSSSyndication.class);
-		//this.syndications.put("sitemap", SitemapSyndication.class);
-		
+		this.syndications.put("twitter", twitterSyndication);		
 	}
+	
 	public Syndication getSyndication(String s) {
 		return this.syndications.get(s);
 	}

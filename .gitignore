@@ -1,2 +1,4 @@
 war/WEB-INF/classes/
 src/swradioafrica.properties
+readme.txt
+war/WEB-INF/appengine-generated/local_db.bin

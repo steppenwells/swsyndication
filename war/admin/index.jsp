@@ -12,6 +12,9 @@
     <h1>SW Radio Africa syndication service</h1>
     <ul>
         <li><a href="/admin/addurl.jsp">Send URL</a></li>
+        <li><a href="/admin/properties">Edit account details</a></li>
+    </ul>
+    <ul>
         <li><a href="/rss">View RSS feed</a></li>
         <li><a href="/newssitemap.xml">Download Google News sitemap</a></li>        
         <%

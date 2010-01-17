@@ -1,61 +1,29 @@
 package com.swradioafrica.utils;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
+import com.google.inject.Singleton;
+import com.swradioafrica.model.SWRadioProperties;
 
+@Singleton
 public class PropertiesRepository {
-	private Properties properties;
 
-	//singleton pattern ruthlessly ripped off from here: http://en.wikipedia.org/wiki/Singleton_pattern#The_solution_of_Bill_Pugh
-	private PropertiesRepository() {
-		InputStream propertiesStream = this.getClass().getClassLoader().getResourceAsStream("swradioafrica.properties");
-		this.properties = new Properties();
-		try {
-			this.properties.load(propertiesStream);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}		
-	}
-	
-	private static class PropertiesRespositoryHolder {
-		private static final PropertiesRepository INSTANCE = new PropertiesRepository();
-	}
-	
-	private String getProperty(String key) {
-		if (getProperties() != null && getProperties().getProperty(key) != null) {
-			return getProperties().getProperty(key);
+	public SWRadioProperties loadProperties() {		
+		SWRadioProperties properties = SWRadioProperties.all().get();
+		if (properties == null) {
+			return new SWRadioProperties();
 		} else {
-			return null; 
+			return properties;
+		}
+		
+	}
+	
+	public void saveProperties(SWRadioProperties properties) {
+		if (properties.id == null) {
+			properties.insert();
+		} else {
+			properties.update();
 		}
 	}
-	public Properties getProperties() {
-		return properties;
-	}
-	
-	public static PropertiesRepository getInstance() {
-		return PropertiesRespositoryHolder.INSTANCE;
-	}
-		
-	/* PROPERTIES */
 
-	public String getTwitterUsername() {
-		return getProperty("twitter.username");
-	}
 	
-	public String getTwitterPassword() {
-		return getProperty("twitter.password");
-	}
-	
-	public String getJdotMPUsername() {
-		return getProperty("j.mp.username");	
-	}
-	
-	public String getJdotMPKey() {
-		return getProperty("j.mp.key");	
-	}
 
 }
