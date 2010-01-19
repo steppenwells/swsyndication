@@ -40,11 +40,11 @@ public class ContentItem extends Model {
 	}
 
 	public String getEscapedTitle() {
-		return StringEscapeUtils.escapeHtml(this.title).replace("&lsquo;","'").replace("&rsquo;", "'");
+		return StringEscapeUtils.escapeHtml(this.title).replace("&lsquo;","'").replace("&rsquo;", "'").replace("&ldquo;", "\"").replace("&rdquo;", "\"");
 	}
 	
 	public String getEscapedBody() {
-		return StringEscapeUtils.escapeHtml(this.body).replace("&lsquo;","'").replace("&rsquo;", "'");
+		return StringEscapeUtils.escapeHtml(this.body).replace("&lsquo;","'").replace("&rsquo;", "'").replace("&ldquo;", "\"").replace("&rdquo;", "\"");
 	}
 	
 	public String getPublishedDateAsString() {
