@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.commons.lang.StringEscapeUtils;
+
 import siena.Column;
 import siena.Id;
 import siena.Model;
@@ -37,6 +39,14 @@ public class ContentItem extends Model {
 		return Model.all(ContentItem.class);
 	}
 
+	public String getEscapedTitle() {
+		return StringEscapeUtils.escapeHtml(this.title).replace("&lsquo;","'").replace("&rsquo;", "'");
+	}
+	
+	public String getEscapedBody() {
+		return StringEscapeUtils.escapeHtml(this.body).replace("&lsquo;","'").replace("&rsquo;", "'");
+	}
+	
 	public String getPublishedDateAsString() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		return dateFormat.format(publishedDate);

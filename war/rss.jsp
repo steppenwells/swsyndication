@@ -4,7 +4,7 @@
 <%@ page import="java.util.Date" %>
 
 <% List<ContentItem> contentItems = (List<ContentItem>)request.getAttribute("contentItems"); %>
-<rss>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
 	<channel>
 		<title>SW Radio Africa</title>
 		<link>http://www.swradioafrica.com</link>
@@ -14,9 +14,9 @@
 		
 		<% for(ContentItem item : contentItems) { %>
 		<item>
-			<title><%= item.title %></title>
+			<title><%= item.getEscapedTitle() %></title>
 			<link><%= item.url %></link>
-			<description><%= item.body %></description>
+			<description><%= item.getEscapedBody() %></description>
 			<pubDate><%= item.publishedDate %></pubDate>
 		</item>
 		<% } %>
