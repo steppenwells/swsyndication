@@ -62,5 +62,14 @@ public class ContentItem extends Model {
 			publishedDate = new Date();
 		}
 	}
+	
+	public String getPublishedDateW3C() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+		return dateFormat.format(publishedDate);	
+	}
+	public String getPublishedDateRSS822() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
+		return dateFormat.format(publishedDate);		
+	}
 
 }

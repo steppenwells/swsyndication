@@ -35,14 +35,16 @@ public class PerformSyndicationsServlet extends HttpServlet {
 		
 		List<String> syndicationMessages = new ArrayList<String>();
 		
-		for (String s: syndications) {
-			Syndication syndication = syndicationFactory.getSyndication(s);
-			if (syndication != null) {
-				syndication.syndicate(contentItem);
-				syndicationMessages.add("successfully sent to " + s);
-			} else {
-				log.severe("Invalid syndication type [" + s + "] attempted. Nothing done.");
-				syndicationMessages.add("failed to send to " + s);
+		if (syndications != null && syndications.length > 0) {
+			for (String s: syndications) {
+				Syndication syndication = syndicationFactory.getSyndication(s);
+				if (syndication != null) {
+					syndication.syndicate(contentItem);
+					syndicationMessages.add("successfully sent to " + s);
+				} else {
+					log.severe("Invalid syndication type [" + s + "] attempted. Nothing done.");
+					syndicationMessages.add("failed to send to " + s);
+				}
 			}
 		}
 		

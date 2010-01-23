@@ -17,7 +17,7 @@
 			<title><%= item.getEscapedTitle() %></title>
 			<link><%= item.url %></link>
 			<description><%= item.getEscapedBody() %></description>
-			<pubDate><%= item.publishedDate %></pubDate>
+			<pubDate><%= item.getPublishedDateRSS822() %></pubDate>
 		</item>
 		<% } %>
 	</channel>

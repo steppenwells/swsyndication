@@ -51,7 +51,7 @@ public class EditPropertiesServlet extends HttpServlet{
 		propertiesRepository.saveProperties(properties);
 		
 		request.setAttribute("properties", properties);
-		
+		request.setAttribute("message", "Account details have been updated");
 		String destination = "/admin/properties.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
         rd.forward(request, response);
