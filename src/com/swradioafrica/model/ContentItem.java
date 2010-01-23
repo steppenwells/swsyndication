@@ -39,12 +39,22 @@ public class ContentItem extends Model {
 		return Model.all(ContentItem.class);
 	}
 
+	private String escapeEntities(String unescaped) {
+		return StringEscapeUtils.escapeHtml(unescaped)
+		.replace("&lsquo;","'")
+		.replace("&rsquo;", "'")
+		.replace("&ldquo;", "\"")
+		.replace("&rdquo;", "\"")
+		.replace("&ndash;","-")
+		.replace("&mdash;","--");
+	}
+	
 	public String getEscapedTitle() {
-		return StringEscapeUtils.escapeHtml(this.title).replace("&lsquo;","'").replace("&rsquo;", "'").replace("&ldquo;", "\"").replace("&rdquo;", "\"");
+		return escapeEntities(this.title);
 	}
 	
 	public String getEscapedBody() {
-		return StringEscapeUtils.escapeHtml(this.body).replace("&lsquo;","'").replace("&rsquo;", "'").replace("&ldquo;", "\"").replace("&rdquo;", "\"");
+		return escapeEntities(this.body);
 	}
 	
 	public String getPublishedDateAsString() {
